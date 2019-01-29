@@ -1,6 +1,11 @@
 import Vue from "vue";
 import Router from "vue-router";
+
 import Home from "./views/Home.vue";
+import Charts from "./views/Charts.vue";
+import Search from "./views/Search";
+import SearchResults from "./components/SearchResults.vue";
+import { privateRoute, publicOnly } from "./utils/routeGuards";
 
 Vue.use(Router);
 
@@ -11,16 +16,27 @@ export default new Router({
     {
       path: "/",
       name: "home",
-      component: Home
+      component: Home,
+      beforeEnter: publicOnly
     },
     {
-      path: "/about",
-      name: "about",
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () =>
-        import(/* webpackChunkName: "about" */ "./views/About.vue")
+      path: "/search",
+      name: "search",
+      component: Search,
+      beforeEnter: privateRoute,
+      children: [
+        {
+          path: ":query",
+          name: "search-query",
+          component: SearchResults,
+          props: true
+        }
+      ]
+    },
+    {
+      path: "/charts",
+      name: "charts",
+      component: Charts
     }
   ]
 });
