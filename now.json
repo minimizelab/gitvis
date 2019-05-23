@@ -10,8 +10,5 @@
     "env": {
       "VUE_APP_GRAPHQL_HTTP": "https://api.github.com/graphql"
     }
-  },
-  "routes": [
-    { "src": "/(.*)", "dest": "/" }
-  ]
+  }
 }
