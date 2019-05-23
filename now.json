@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "name": "gitvis",
+  "scope": "axelekwall",
+  "public": true,
+  "builds": [{ "src": "package.json", "use": "@now/static-build" }],
+  "alias": ["gitvis.axelekwall.se"],
+  "github": {
+    "enabled": false
+  }
+}
